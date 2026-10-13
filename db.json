@@ -25,34 +25,10 @@
       "tutorId": "1"
     },
     {
-      "nome": "Ana Maria",
-      "especie": "Tartaruga",
-      "tutorId": "Ana",
-      "id": "VQyD85asMJI"
-    },
-    {
       "nome": "Carlos",
       "especie": "Coelho",
       "tutorId": "Carlos",
       "id": "rUGvdZ_A93U"
-    },
-    {
-      "nome": "Maria de zelda",
-      "especie": "Coelho",
-      "tutorId": "Carlos",
-      "id": "FYBFf69xw6w"
-    },
-    {
-      "nome": "Amora",
-      "especie": "Tartaruga",
-      "tutorId": "1",
-      "id": "CSroFsQHs1w"
-    },
-    {
-      "nome": "Amora",
-      "especie": "Gato",
-      "tutorId": "1",
-      "id": "sWeXLDWSBHs"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
