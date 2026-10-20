@@ -1,13 +1,24 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
+
+const route = useRoute();
+
+function isCurrentSection(section) {
+  return (
+    route.path === `/${section}` ||
+    (route.path.startsWith(`/${section}/`) && route.path !== `/${section}/novo`)
+  );
+}
 </script>
 
 <template>
   <nav aria-label="Menu da PetSchool">
     <div class="nav flex-column nav-pills gap-1">
       <RouterLink
-        class="nav-link"
-        active-class="active"
+        class="nav-link section-link"
+        :class="{ active: isCurrentSection('pets') }"
+        :aria-current="isCurrentSection('pets') ? 'page' : undefined"
+        active-class=""
         to="/pets"
       >
         <i
@@ -18,8 +29,9 @@ import { RouterLink } from 'vue-router';
       </RouterLink>
 
       <RouterLink
-        class="nav-link"
-        active-class="active"
+        class="nav-link create-link"
+        exact-active-class="active"
+        active-class=""
         to="/pets/novo"
       >
         <i
@@ -29,16 +41,48 @@ import { RouterLink } from 'vue-router';
         Novo pet
       </RouterLink>
 
-      <span
-        class="nav-link text-body-secondary"
-        aria-disabled="true"
+      <RouterLink
+        class="nav-link section-link"
+        :class="{ active: isCurrentSection('tutores') }"
+        :aria-current="isCurrentSection('tutores') ? 'page' : undefined"
+        active-class=""
+        to="/tutores"
       >
         <i
           class="bi bi-people me-2"
           aria-hidden="true"
         ></i>
-        Tutores <small class="ms-1">(em breve)</small>
-      </span>
+        Tutores
+      </RouterLink>
+
+      <RouterLink
+        class="nav-link create-link"
+        exact-active-class="active"
+        active-class=""
+        to="/tutores/novo"
+      >
+        <i
+          class="bi me-2"
+          :class="
+            route.path === '/tutores/novo' ? 'bi-people' : 'bi-plus-circle'
+          "
+          aria-hidden="true"
+        ></i>
+        Novo tutor
+      </RouterLink>
+
+      <RouterLink
+        class="nav-link section-link"
+        exact-active-class="active"
+        active-class=""
+        to="/reservas"
+      >
+        <i
+          class="bi bi-calendar-check me-2"
+          aria-hidden="true"
+        ></i>
+        Reservas
+      </RouterLink>
     </div>
   </nav>
 </template>

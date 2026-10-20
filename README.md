@@ -1,9 +1,15 @@
-# Nome do projeto
+# PetSchool
 
-> Substitua este título e esta descrição pelas informações do seu projeto.
+Cadastro de tutores e pets com Vue, Bootstrap, Fetch API e JSON Server.
+Inclui busca de tutores, formulário completo com máscaras e validação,
+detalhes do tutor, cadastro de pets vinculados, remoção protegida de tutores
+e reservas com controle de vagas por período.
 
-Descreva brevemente o objetivo da aplicação, o problema que ela resolve e o
-público ao qual se destina.
+As listagens possuem uma pesquisa única por nome, CPF ou telefone, com resultados
+atualizados durante a digitação. Em Pets e Reservas, também é possível localizar
+os registros pelo nome, CPF ou telefone do tutor vinculado. O botão Limpar pesquisa
+volta a exibir todos os registros. A pesquisa das reservas mantém o cálculo de
+ocupação com todas as reservas confirmadas.
 
 ## Tecnologias
 
@@ -12,7 +18,8 @@ público ao qual se destina.
 - Vue Router;
 - Bootstrap 5;
 - Bootstrap Icons;
-- Axios.
+- Fetch API;
+- JSON Server.
 
 ## Pré-requisitos
 
@@ -62,7 +69,13 @@ npm install
 
 ## Execução
 
-Inicie o servidor de desenvolvimento:
+Em um terminal, inicie a API que persiste os dados em `db.json`:
+
+```bash
+npm run api
+```
+
+A API utiliza `http://localhost:3000`. Em outro terminal, inicie a aplicação:
 
 ```bash
 npm run dev
@@ -74,11 +87,36 @@ O terminal apresentará o endereço local da aplicação, normalmente:
 http://localhost:5173
 ```
 
+As telas estão disponíveis em `/pets`, `/pets/novo`, `/pets/:id`, `/tutores`,
+`/tutores/novo`, `/tutores/:id` e `/reservas`. Mantenha os dois terminais em execução.
+
+Para utilizar outro endereço de API, defina `VITE_API_URL` em `.env.local`
+e reinicie o servidor de desenvolvimento. Exemplo:
+
+```dotenv
+VITE_API_URL=http://localhost:3000
+```
+
+Somente nome e telefone são obrigatórios no cadastro de tutor. Os demais campos
+são opcionais e validados quando preenchidos. Para remover um tutor, remova seus
+pets vinculados ou transfira os vínculos previamente.
+
+Em **Reservas**, selecione o pet e as datas de entrada e saída. O hotel começa
+com **20 vagas**, e a capacidade pode ser alterada nessa mesma tela. A saída
+libera a vaga para outra entrada no mesmo dia. Reservas canceladas ou finalizadas
+deixam de ocupar vagas. O sistema também impede reservas sobrepostas para o mesmo
+pet e a redução da capacidade abaixo das reservas ativas.
+
+O comando `npm run api` utiliza o JSON Server com validações de disponibilidade
+antes de gravar reservas em `db.json`, inclusive quando chegam solicitações
+simultâneas. Reinicie a API após atualizar o projeto para ativar essas regras.
+
 Outros comandos disponíveis:
 
 ```bash
 npm run format
 npm run lint
+npm test
 npm run build
 npm run preview
 ```

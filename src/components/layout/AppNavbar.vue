@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router';
 
 <template>
   <nav
-    class="navbar navbar-expand-md navbar-dark bg-success"
+    class="navbar navbar-expand-md navbar-dark bg-success app-navbar"
     aria-label="Navegação principal"
   >
     <div class="container-fluid">

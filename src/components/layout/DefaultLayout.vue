@@ -5,28 +5,23 @@ import AppSidebar from '@/components/layout/AppSidebar.vue';
 </script>
 
 <template>
+  <a
+    class="visually-hidden-focusable skip-link"
+    href="#conteudo"
+    >Ir para o conteúdo</a
+  >
   <AppNavbar />
 
-  <div class="container-fluid">
-    <div class="row">
-      <aside class="col-md-3 col-lg-2 bg-body-tertiary border-end p-3 sidebar">
-        <AppSidebar />
-      </aside>
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <AppSidebar />
+    </aside>
 
-      <main
-        id="conteudo"
-        class="col-md-9 col-lg-10 px-3 px-md-4 py-4"
-      >
-        <RouterView />
-      </main>
-    </div>
+    <main
+      id="conteudo"
+      class="app-content"
+    >
+      <RouterView />
+    </main>
   </div>
 </template>
-
-<style scoped>
-@media (min-width: 768px) {
-  .sidebar {
-    min-height: calc(100vh - 56px);
-  }
-}
-</style>
